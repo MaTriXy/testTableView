@@ -2,21 +2,17 @@
 //  CustomViewController.swift
 //  testTableView
 //
-//  Created by Romain Cardona on 05/04/2018.
+//  Created by Romain Cardona on 09/04/2018.
 //  Copyright © 2018 Romain Cardona. All rights reserved.
 //
 
 import UIKit
 
 class CustomViewController: UIViewController {
-    
-    @IBOutlet weak var liste: UITableView!
-    
-    var affliste: String = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        liste.nom = affliste
+
         // Do any additional setup after loading the view.
     }
 
