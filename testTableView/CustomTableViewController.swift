@@ -12,9 +12,16 @@ class CustomTableViewController: UITableViewController {
     
     // Création d'une constante data = à la classe Data
     let data = Data()
+    
+    // Variable prenant la structure filmslist
+    var liste = [filmslist]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        downloadJSON {
+            print("All right BABY !")
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -26,6 +33,25 @@ class CustomTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // JSON
+    func downloadJSON(completed: @escaping () -> ()) {
+        
+        let url = URL(string: "https://projetpersocardona.fr/transfert_script.php")
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error == nil {
+                do {
+                    self.liste = try JSONDecoder().decode([filmslist].self, from: data!)
+                    
+                    DispatchQueue.main.async {
+                        completed()
+                    }
+                } catch {
+                    print("JSON Error")
+                }
+            }
+        }.resume()
     }
 
     // MARK: - Table view data source
@@ -43,22 +69,12 @@ class CustomTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellu", for: indexPath) as! CustomTableViewCell
         let entre1 = data.donnes[indexPath.row]
-        let entre2 = data.donnes[indexPath.row]
         
         
         cell.gens.text = entre1.nom
-        cell.gens2.text = entre2.prenom
+        cell.gens2.text = entre1.prenom
         return cell
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "lien" {
-            let details = segue.destination as! CustomViewController
-            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
-                let entre3 = data.donnes[indexPath.row]
-                details.liste = entre3.nom
-            }
             
             
         }
-    }
-}

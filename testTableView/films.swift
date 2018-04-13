@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+struct filmslist: Decodable {
+    let titre: String
+    let genre: String
+    let duree: Int
+    
+}
