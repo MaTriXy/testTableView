@@ -16,6 +16,7 @@
 		350F2AB120764CDF009C63F2 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350F2AB020764CDF009C63F2 /* CustomTableViewCell.swift */; };
 		3555E64A207BB3E80085EF01 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3555E649207BB3E80085EF01 /* CustomViewController.swift */; };
 		3591EB40207D4480000B1974 /* films.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3591EB3F207D4480000B1974 /* films.swift */; };
+		E5E8C38A2080D6E00036ACE0 /* FilmsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E8C3892080D6E00036ACE0 /* FilmsRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		350F2AB020764CDF009C63F2 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		3555E649207BB3E80085EF01 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		3591EB3F207D4480000B1974 /* films.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = films.swift; sourceTree = "<group>"; };
+		E5E8C3892080D6E00036ACE0 /* FilmsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmsRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				350F2A9E20763E52009C63F2 /* Main.storyboard */,
 				350F2AA120763E52009C63F2 /* Assets.xcassets */,
 				350F2AA320763E52009C63F2 /* LaunchScreen.storyboard */,
+				E5E8C3892080D6E00036ACE0 /* FilmsRepository.swift */,
 				350F2AA620763E52009C63F2 /* Info.plist */,
 			);
 			path = testTableView;
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				350F2A9B20763E52009C63F2 /* AppDelegate.swift in Sources */,
+				E5E8C38A2080D6E00036ACE0 /* FilmsRepository.swift in Sources */,
 				3591EB40207D4480000B1974 /* films.swift in Sources */,
 				350F2AAF207649A9009C63F2 /* CustomTableViewController.swift in Sources */,
 				3555E64A207BB3E80085EF01 /* CustomViewController.swift in Sources */,

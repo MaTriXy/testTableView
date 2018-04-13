@@ -10,71 +10,57 @@ import UIKit
 
 class CustomTableViewController: UITableViewController {
     
-    // Création d'une constante data = à la classe Data
-    let data = Data()
+    //le repository est l'objet qui va te fournir tes films
+    //ici tu spécifie que tu veux utiliser le repository qui va tapper le json en ligne
+    //tu mettrai = FilmRepositoryLocal() et sanq changer l'implémentation de ce controller,
+    //tu recevrai des données en dur et non de ton webservice, je t'ai mit FilmRepositoryLocal comme exemple
     
-    // Variable prenant la structure filmslist
-    var liste = [filmslist]()
+    let filmsRepository = FilmsRepositoryJSON()
+    //let filmsRepository = FilmsRepositoryLocal()
+    
+    //la liste des films que tu affichera dans ta liste
+    var liste = [Film]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        downloadJSON {
+        //tu lance le téléchargement des films (ou la récupération en local)
+        filmsRepository.getFilms { (films) in
+            //tu vas recevoir dans (films) la liste des films téléchargés
+            
+            //tu les ajoute dans ta variable `liste`
+            self.liste.append(contentsOf: films)
             print("All right BABY !")
+            
+            //et tu demande à la tableview de se mettre à jour
+            self.tableView.reloadData()
         }
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // JSON
-    func downloadJSON(completed: @escaping () -> ()) {
-        
-        let url = URL(string: "https://projetpersocardona.fr/transfert_script.php")
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            if error == nil {
-                do {
-                    self.liste = try JSONDecoder().decode([filmslist].self, from: data!)
-                    
-                    DispatchQueue.main.async {
-                        completed()
-                    }
-                } catch {
-                    print("JSON Error")
-                }
-            }
-        }.resume()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return data.donnes.count
+        return liste.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellu", for: indexPath) as! CustomTableViewCell
-        let entre1 = data.donnes[indexPath.row]
+        let film = liste[indexPath.row]
         
+        //ici tu voudra afficher des films je pense
+        //donc ça ressemblera plus à
+        //cell.titreFilm.text = film.titre
         
-        cell.gens.text = entre1.nom
-        cell.gens2.text = entre1.prenom
+        cell.gens.text = film.titre
+        
+        //et non
+        //cell.gens.text = entre1.nom
+        //cell.gens2.text = entre1.prenom
         return cell
     }
             
-            
-        }
+}
